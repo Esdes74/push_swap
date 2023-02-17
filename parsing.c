@@ -6,8 +6,15 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:10 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/15 11:36:11 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/17 12:54:38 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "swap.h"
 
+void	parsing(t_swap *data, char *av)
+{
+	(void) data;
+	(void) av;
+	return ;
+}
