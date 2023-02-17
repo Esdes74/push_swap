@@ -6,12 +6,15 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:15 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/17 16:01:05 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:14:32 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SWAP_H
 # define SWAP_H
+# define ER 2
+# define MSG "Error\n"
+# define P_ERROR ft_printf_fd(ER, MSG)
 # include "libft/libft.h"
 
 typedef struct	s_swap{

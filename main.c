@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:04 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/17 16:34:11 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/17 18:15:25 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int ac, char **av)
 
 	data = init_swap();
 	if (data == 0)
-		return (1);
+		return (P_ERROR, 1);
 	i = 1;
 	while (i < ac)
 		parsing(data, av[i++]);
