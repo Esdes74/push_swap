@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 11:29:29 by eslamber          #+#    #+#              #
-#    Updated: 2023/02/15 12:55:02 by eslamber         ###   ########.fr        #
+#    Updated: 2023/02/20 15:28:28 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ debug:
 
 val_deb:
 	make -C libft valgrind_deb
-	make -C ./ "FLAGS = -Wall -Werror -Wextra -g"&
+	make -C ./ "FLAGS = -Wall -Werror -Wextra -g"
 
 #
 ### Cleanup rules
