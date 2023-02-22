@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:15 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/20 15:33:32 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:55:24 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ typedef struct	s_swap{
 }	t_swap;
 
 // Main of parsing part
-void	parsing(t_swap *data, char *av);
+int	parsing(t_swap *data, char *av);
 
 #endif

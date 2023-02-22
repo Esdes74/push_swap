@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:04 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/20 15:29:27 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:55:44 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	main(int ac, char **av)
 		return (P_ERROR(ER), 1);
 	i = 1;
 	while (i < ac)
-		parsing(data, av[i++]);
+		if (parsing(data, av[i++]) != 0)
+			return (P_ERROR(ER), destroy_data(data), 1);
+	print_list(data->pa);
 	return (destroy_data(data), 0);
 }

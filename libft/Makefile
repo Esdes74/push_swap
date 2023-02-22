@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:42:31 by eslamber          #+#    #+#              #
-#    Updated: 2023/02/17 17:45:32 by eslamber         ###   ########.fr        #
+#    Updated: 2023/02/22 18:59:44 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -178,6 +178,7 @@ PRINT_LIB_H := $(LIB_PRINT)lib_print.h
 PRINT_OBJ_LIB := $(PRINT_LIB:%.c=$(LIB_PRINT_OBJ)%.o)
 
 STR_LIB := ft_atoi.c \
+		   ft_calloc_str.c \
 		   ft_isalnum.c \
 		   ft_isascii.c \
 		   ft_isprint.c \
