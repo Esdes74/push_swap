@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:10 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/22 19:53:38 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:30:14 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	add(t_swap *data, char *elem)
 	if (new == 0)
 		return (1);
 	*new = ft_atoi(elem);
+	if (where(data->pa, INT, new, sizeof(int)) != 0)
+		return (free(new), 1);
 	if (tailing_list(data->pa, new, INT, DEBUG) == 0)
 		return (free(new), 1);
 	return (0);
