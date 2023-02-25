@@ -6,8 +6,7 @@
 #    By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 11:18:56 by eslamber          #+#    #+#              #
-#    Updated: 2023/02/20 15:52:10 by eslamber         ###   ########.fr        #
-#                                                                              #
+#    Updated: 2023/02/20 15:52:10 by eslamber         ###   ########.fr        #                                                       #
 # **************************************************************************** #
 
 #
@@ -23,7 +22,7 @@ SRC := src/
 OBJ := obj/
 
 # Definitions of variables
-LIB := lib_list.a
+LIB := libft.a
 H := lib_list.h
 
 L_SRC := init_list.c \

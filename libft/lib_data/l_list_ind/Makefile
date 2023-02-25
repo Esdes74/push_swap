@@ -23,7 +23,7 @@ SRC := src/
 OBJ := obj/
 
 # Definitions of variables
-LIB := lib_list_ind.a
+LIB := libft.a
 H := lib_list_ind.h
 
 L_SRC := init_list_ind.c
