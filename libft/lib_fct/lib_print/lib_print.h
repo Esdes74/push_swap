@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:56:43 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/17 18:00:44 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:11:32 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-typedef struct	s_print{
+// Macro to print "Error\n" on right file descriptor
+# define ER 2
+# define MSG "Error\n"
+
+typedef struct s_print{
 	size_t	ind;
 	int		fd;
 }	t_print;
 
-typedef struct	s_print_a{
+typedef struct s_print_a{
 	int	mod;
 	int	fd;
 }	t_print_a;

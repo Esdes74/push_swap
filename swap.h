@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:15 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/17 16:01:05 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:18:37 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define SWAP_H
 # include "libft/libft.h"
 
-typedef struct	s_swap{
+typedef struct s_swap{
 	t_list	*pa;
 	t_list	*pb;
 }	t_swap;
 
 // Main of parsing part
-void	parsing(t_swap *data, char *av);
+int	parsing(t_swap *data, char *av);
 
 #endif

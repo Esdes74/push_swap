@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 10:38:47 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/17 17:59:54 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:10:18 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include "l_simple/lib_simple.h"
+
 # define DEBUG 1
 # define NODEB 0
+
+// Macro to print "Error\n" on right file descriptor
+# define ER 2
+# define MSG "Error\n"
 
 typedef enum e_type {
 	CHAR = 0,
@@ -70,12 +75,12 @@ typedef struct s_head_tree {
 	t_list	*leaves;
 }	t_tree;
 
-typedef struct	s_p{
+typedef struct s_p {
 	size_t	ind;
 	int		fd;
 }	t_p;
 
-typedef struct	s_p_a{
+typedef struct s_p_a {
 	int	mod;
 	int	fd;
 }	t_p_a;
@@ -129,13 +134,16 @@ void			init_tree(void);
 
 /*####################### GNRL ########################*/
 // Function do nothing
-void			none();
+void			none(void);
 
 // Return true if type given is a list type
 int				is_list(t_type t);
 
 // Initialisation of data cells
 t_data			*init_data(void *data, t_type t, t_bool allow, t_data *cell);
+
+// Find d in list lst return 0 if not found
+t_cell			*where(t_list *lst, t_type t, void *d, size_t n);
 
 // Return size of type give to argument
 // If a pointer is given as argument, return -1
