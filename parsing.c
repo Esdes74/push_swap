@@ -6,16 +6,44 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:10 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/24 17:15:36 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/25 16:10:05 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
 
+static int	annalyse(char *elem)
+{
+	size_t	i;
+	size_t	len;
+	char	*int_max;
+	char	*int_min;
+
+	len = ft_strlen(elem);
+	int_max = "2147483647";
+	int_min = "-2147483648";
+	if (len > ft_strlen(int_min))
+		return (1);
+	if (len == ft_strlen(int_min) && ft_strncmp(int_min, elem, len) < 0)
+		return (1);
+	if (len == ft_strlen(int_max) && ft_strncmp(int_max, elem, len) < 0)
+		return (1);
+	i = 0;
+	if (elem[0] == '-')
+		i++;
+	while (ft_isdigit(elem[i]))
+		i++;
+	if (i == len)
+		return (0);
+	return (1);
+}
+
 static int	add(t_swap *data, char *elem)
 {
 	int	*new;
 
+	if (annalyse(elem) != 0)
+		return (1);
 	new = (int *) malloc(sizeof(int));
 	if (new == 0)
 		return (1);

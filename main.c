@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:04 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/23 16:28:21 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/25 16:22:02 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	main(int ac, char **av)
 	t_swap	*data;
 	int		i;
 
+	if (ac == 1)
+		return (P_ERROR(ER), 1);
 	data = init_swap();
 	if (data == 0)
 		return (P_ERROR(ER), 1);
