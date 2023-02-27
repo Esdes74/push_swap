@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:42:31 by eslamber          #+#    #+#              #
-#    Updated: 2023/02/17 17:45:32 by eslamber         ###   ########.fr        #
+#    Updated: 2023/02/26 15:38:24 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,37 +17,6 @@
 # Definitions of compilation options
 FLAGS := -Wall -Werror -Wextra
 CC := gcc
-
-# Definitions of tests repositories
-TEST_DIR := ../test_lib/
-TEST_OBJ_DIR := $(TEST_DIR)obj/
-TEST_SRC_DIR := $(TEST_DIR)src/
-TEST_EXE_DIR := $(TEST_DIR)exe/
-
-# Definitions of variables needed for test compilation
-SRC_TEST := oracle.c \
-			list.c \
-			stack.c \
-			gnrl.c \
-			test_init_stack.c \
-			test_init_data.c \
-			test_stacking.c \
-			test_stacking_val.c \
-			test_unstack.c \
-			test_rmstack.c \
-			test_size.c \
-			test_init_list.c \
-			test_stacking_list.c \
-			test_unstack_list.c \
-			test_rmstack_list.c \
-			test_addback_list.c \
-			test_rmback_list.c \
-			test_delback_list.c
-EXE := oracle
-NAME := $(EXE:%=$(TEST_EXE_DIR)%)
-
-# Definition of test's objects files
-OBJ_TEST := $(SRC_TEST:%.c=$(TEST_OBJ_DIR)%.o)
 
 # Definition of variable librairie
 LIB_FCT := lib_fct/
@@ -129,12 +98,6 @@ ALL_LIB_SRC_DIR := $(LIB_LIST_SRC) \
 # Definition of variables needed to librairie's compilation
 GNRL_LIB := init_data.c \
 			size.c \
-			ft_putchar_fd.c \
-			ft_putstr_fd.c \
-			ft_putnbr_fd.c \
-			ft_printf.c \
-			ft_printf_fd.c \
-			conv_ten_to_hex.c \
 			print_list.c \
 			change_type.c \
 			clear_cell.c \
@@ -165,7 +128,6 @@ QUEUE_OBJ_LIB := $(QUEUE_LIB:%.c=$(LIB_QUEUE_OBJ)%.o)
 
 STACK_LIB := init_stack.c \
 			 stacking.c \
-			 stacking_val.c \
 			 unstack.c \
 			 rmstack.c
 STACK_LIB_H := $(LIB_STACK)lib_stack.h
@@ -205,7 +167,10 @@ MEM_OBJ_LIB := $(MEM_LIB:%.c=$(LIB_MEM_OBJ)%.o)
 PRINT_LIB := ft_putchar_fd.c \
 			 ft_putendl_fd.c \
 			 ft_putnbr_fd.c \
-			 ft_putstr_fd.c
+			 ft_putstr_fd.c \
+			 conv_ten_to_hex.c \
+			 ft_printf.c \
+			 ft_printf_fd.c
 PRINT_LIB_H := $(LIB_PRINT)lib_print.h
 PRINT_OBJ_LIB := $(PRINT_LIB:%.c=$(LIB_PRINT_OBJ)%.o)
 
@@ -263,19 +228,9 @@ NEUTRAL := '\e[0m'
 # only lib
 all: $(LIB)
 
-# lib and test
-test: $(LIB) $(NAME)
-
 $(LIB): $(ALL_OBJ_LIB)
 	ar rc $@ $^
 	ranlib $@
-
-$(NAME): $(OBJ_TEST)
-	$(CC) $(FLAGS) -o $@ $^ -L. $(LIB)
-
-$(OBJ_TEST): $(TEST_OBJ_DIR)%.o: $(TEST_SRC_DIR)%.c libft.h $(TEST_DIR)oracle.h\
-	$(LIB) $(HEADERS)
-	$(CC) $(FLAGS) -c $< -o $@
 
 $(LIST_OBJ_LIB): $(LIB_LIST_OBJ)%.o: $(LIB_LIST_SRC)%.c $(LIST_LIB_H) \
 	$(LIB_DATA)lib_data.h
@@ -340,19 +295,11 @@ valgrind_deb:
 ### Directories rules
 #
 
-make_dir: dir_lib dir_test
-
-dir_lib:
+make_dir:
 	@echo -e $(LIGHTBLUE)make librairies directories$(NEUTRAL)
 	mkdir -p $(ALL_LIB_OBJ_DIR)
 	@echo -e $(LIGHTBLUE)done$(NEUTRAL)
 	@echo
-
-dir_test:
-	@echo -e $(LIGHTBLUE)make test directories$(NEUTRAL)
-	mkdir -p $(TEST_OBJ_DIR) $(TEST_EXE_DIR)
-	@echo -e $(LIGHTBLUE)done
-	@echo -e $(NEUTRAL)
 
 #
 ### Test rules
@@ -366,32 +313,13 @@ vartest:
 #
 
 # Compilation of librairie with print options
-printlib: print_ob $(ALL_OBJ_LIB) print_lb $(LIB) print_le
-
-# Compilation of tests with print options
-printtest: print_otb $(OBJ_TEST) print_eb $(NAME) print_ee
-
-print: printlib printtest
+print: print_ob $(ALL_OBJ_LIB) print_lb $(LIB) print_le
 
 print_ob:
 	@echo -e $(LIGHTBLUE)compilation lib objects files$(NEUTRAL)
 
 print_oe:
 	@echo -e $(LIGHTBLUE)compilation lib objetcs files done$(NEUTRAL)
-	@echo
-
-print_otb:
-	@echo -e $(LIGHTBLUE)compilation test objects files$(NEUTRAL)
-
-print_ote:
-	@echo -e $(LIGHTBLUE)compilation test objetcs files done$(NEUTRAL)
-	@echo
-
-print_eb: print_ote
-	@echo -e $(LIGHTBLUE)compilation executables$(NEUTRAL)
-
-print_ee:
-	@echo -e $(LIGHTBLUE)compilation executables done$(NEUTRAL)
 	@echo
 
 print_lb: print_oe
@@ -407,23 +335,8 @@ print_le:
 
 # Classiques cleaning rules
 clean:
-	@echo -e $(LIGHTBLUE)remove all $(RED)objects files$(NEUTRAL)
-	@rm -rfv $(OBJ_TEST) $(ALL_OBJ_LIB)
-	@echo
-
-cleanobjlib:
 	@echo -e $(LIGHTBLUE)remove all $(RED)librairires objects files$(NEUTRAL)
 	@rm -rfv $(ALL_OBJ_LIB)
-	@echo
-
-cleanobjexec:
-	@echo -e $(LIGHTBLUE)remove all $(RED)executables objects files$(NEUTRAL)
-	@rm -rfv $(OBJ_TEST)
-	@echo
-
-cleanexec: 
-	@echo -e $(LIGHTBLUE)remove all $(RED)executables$(NEUTRAL)
-	@rm -rfv $(NAME)
 	@echo
 
 cleanlib: 
@@ -433,33 +346,20 @@ cleanlib:
 
 # Directories cleaning rules
 cleandir: 
-	@echo -e $(LIGHTBLUE)remove all $(RED)directories$(NEUTRAL)
-	@rm -rfv $(TEST_OBJ_DIR) $(TEST_EXE_DIR) $(ALL_LIB_OBJ_DIR)
-	@echo
-
-cleandirlib: 
 	@echo -e $(LIGHTBLUE)remove all $(RED)librairies directories$(NEUTRAL)
 	@rm -rfv $(ALL_LIB_OBJ_DIR)
-	@echo
-
-cleandirtest: 
-	@echo -e $(LIGHTBLUE)remove all $(RED)executables directories$(NEUTRAL)
-	@rm -rfv $(TEST_OBJ_DIR) $(TEST_EXE_DIR)
 	@echo
 
 clean_git:
 	@echo -e $(LIGHTBLUE)remove all $(RED)gitignore files$(NEUTRAL)
 	@rm -rfv ./lib_*/*/obj/.gitignore
-	@rm -rfv ../test_lib/*/.gitignore
 	@echo
 
 gitignor: 
 	@echo -e $(LIGHTBLUE)reediting of differents $(RED)gitignores$(NEUTRAL)
-	touch ../test_lib/obj/.gitignore
-	@echo "*" > ../test_lib/obj/.gitignore
-	@echo !.gitignore >> ../test_lib/obj/.gitignore
-	cp ../test_lib/obj/.gitignore ../test_lib/exe/
-	cp ../test_lib/obj/.gitignore lib_data/l_gnrl/obj
+	touch lib_data/l_gnrl/obj/.gitignore
+	@echo "*" > lib_data/l_gnrl/obj/.gitignore
+	@echo !.gitignore >> lib_data/l_gnrl/obj/.gitignore
 	cp lib_data/l_gnrl/obj/.gitignore lib_data/l_list/obj
 	cp lib_data/l_gnrl/obj/.gitignore lib_data/l_list_ind/obj
 	cp lib_data/l_gnrl/obj/.gitignore lib_data/l_stack/obj
@@ -473,30 +373,19 @@ gitignor:
 	@echo
 
 # Full cleaning rules
-fclean: cleanobjlib cleanobjexec cleanlib cleanexec clean_git \
-	cleandir make_dir gitignor
-
-fcleanlib: cleanobjlib cleandirlib cleanlib dir_lib gitignor
-
-fcleantest: fclean dir_test gitignor
+fclean: clean cleanlib clean_git cleandir make_dir gitignor
 
 # Remake rules
-re: fcleanlib all
-
-retest: fclean test
+re: fclean all
 
 re_deb: fclean debug
 
 re_val: fclean valgrind_deb
 
 # Remakes rules with print options
-reprint: fcleanlib printlib
+reprint: fcleanlib print
 
-reprinttest: fclean print
-
-.PHONY: print_oe print_eb print_ee print_ob print_le print_lb reprint print
-.PHONY: print_otb print_ote reprinttest
-.PHONY: re dir_lib dir_test vartest all test make_dir retest re_deb re_val
+.PHONY: print_oe print_ob print_le print_lb reprint print
+.PHONY: re vartest all make_dir re_deb re_val gitignor
 .PHONY: debug valgrind_deb
-.PHONY: fcleantest cleandirtest fclean clean cleandir cleanlib cleanexec 
-.PHONY: fcleanlib cleandirlib cleanobjlib cleanobjexec clean_git
+.PHONY: fclean clean cleandir cleanlib clean_git
