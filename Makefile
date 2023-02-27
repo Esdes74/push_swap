@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 11:29:29 by eslamber          #+#    #+#              #
-#    Updated: 2023/02/22 19:36:35 by eslamber         ###   ########.fr        #
+#    Updated: 2023/02/27 18:49:43 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ HEADER := swap.h
 
 # Definition of files variables
 SRC := parsing.c \
+	   rules_swap_and_push.c \
+	   rule_rotate_and_reverse.c \
 	   main.c
 OBJ := $(SRC:%.c=.obj/%.o)
 
