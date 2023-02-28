@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:15 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/27 18:48:49 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:55:01 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,17 @@ void	rotate(t_swap *data, int mod);
 
 // Execute rule reverse
 void	reverse(t_swap *data, int mod);
+
+// Main of sort part
+void	sort(t_swap *data);
+
+// Sort two first values of lst given (by mod)
+void	sort_two(t_swap *data, int mod);
+
+// Sort three first values of lst given
+void	sort_three(t_swap *data, int mod);
+
+// Search the 2 minimal values of list given
+t_cell	*search_min(t_swap *data, int *f_min, int *s_min, int mod);
 
 #endif
