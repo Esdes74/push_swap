@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:15 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/28 18:55:01 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:53:52 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ void	sort_three(t_swap *data, int mod);
 
 // Search the 2 minimal values of list given
 t_cell	*search_min(t_swap *data, int *f_min, int *s_min, int mod);
+
+// Searche the maximal value if list given
+t_cell	*search_max(t_swap *data, int *res, int mod);
 
 #endif

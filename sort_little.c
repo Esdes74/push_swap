@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:44:35 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/28 20:15:24 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:52:04 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,26 @@ t_cell	*search_min(t_swap *data, int *f_min, int *s_min, int mod)
 		}
 		else if (value(tmp, INT) < *s_min || tmp == pt->next)
 			*s_min = value(tmp, INT);
+		tmp = tmp->next;
+	}
+	return (pt);
+}
+
+t_cell	*search_max(t_swap *data, int *res, int mod)
+{
+	t_cell	*tmp;
+	t_cell	*pt;
+
+	if (mod == SA)
+		pt = data->pa->head;
+	else if (mod == SB)
+		pt = data->pb->head;
+	tmp = pt;
+	*res = value(pt, INT);
+	while (tmp != 0)
+	{
+		if (value(tmp, INT) > *res)
+			*res = value(tmp, INT);
 		tmp = tmp->next;
 	}
 	return (pt);
