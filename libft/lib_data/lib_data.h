@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 10:38:47 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/28 16:32:22 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/02 16:18:37 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ t_cell			*where(t_list *lst, t_type t, void *d, size_t n);
 
 // Return size of type give to argument
 // If a pointer is given as argument, return -1
-long long int	size(t_type t, int debug);
+size_t			size(t_type t, int debug);
 
 // Delete data in data_cell with f and free cell
 void			clear_cell(t_list *lst, t_cell *cell, void (*f)(void *));

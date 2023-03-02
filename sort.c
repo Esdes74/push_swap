@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:41:02 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/01 15:51:50 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:23:52 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,19 @@
 
 static void	reverse_or_rotate(t_swap *data, int mod, int m)
 {
-	int		f;
 	int		r;
 	int		rr;
 	t_cell	*tmp;
 
-	if (m == -5)
-		tmp = search_min(data, &f, &r, mod);
-	if (m == -6)
-		tmp = search_max(data, &f, mod);
 	rr = 0;
 	r = 0;
-	while ((r++) < -1 || value(tmp, INT) != f)
+	while ((r++) < -1 || value(tmp, INT) != m)
 		tmp = tmp->next;
 	if (mod == SA)
 		tmp = data->pa->tail;
 	else
 		tmp = data->pb->tail;
-	while ((rr++) < -1 || value(tmp, INT) != f)
+	while ((rr++) < -1 || value(tmp, INT) != m)
 		tmp = tmp->prev;
 	if (r <= rr)
 		rotate(data, mod);
@@ -50,40 +45,46 @@ static void	real_sort(t_swap *data)
 		if (value(tmp, INT) == f)
 			push(data, SA);
 		else
-			reverse_or_rotate(data, SB, -6);
+			reverse_or_rotate(data, SB, f);
 	}
 }
 
-static void	pre_sort(t_swap *data)
+static int	pre_sort(t_swap *data)
 {
-	int		f_min;
 	int		s;
 	t_cell	*tmp;
 
 	while (data->pa->len > 0)
 	{
-		tmp = search_min(data, &f_min, &s, SA);
+		tmp = data->pa->head;//search_min(data, &f_min, &s, SA);
 		if (data->pa->len > 300)
 			s = 40;
-		else if (data->pa->len > 150)
+		else if (data->pa->len > 100)
 			s = 30;
 		else if (data->pa->len > 75)
 			s = 20;
 		else
 			s = 10;
-		if (value(tmp, INT) <= f_min + s && value(tmp, INT) >= f_min - s)
+		data->tab = tab_min(data, data->tab, s);
+		if (data->tab == 0)
+			return (1);
+		if (in(data->tab, value(tmp, INT), s) == 1)//value(tmp, INT) <= f_min + s && value(tmp, INT) >= f_min - s)
 			push(data, SB);
 		else
-			reverse_or_rotate(data, SA, -5);
+			reverse_or_rotate(data, SA, value(tmp, INT));
+		free(data->tab);
 	}
+	return (0);
 }
 
-void	sort(t_swap *data)
+int	sort(t_swap *data)
 {
 	if (data->pa->len == 2)
-		return (sort_two(data, SA));
+		return (sort_two(data, SA), 0);
 	else if (data->pa->len == 3)
-		return (sort_three(data, SA));
-	pre_sort(data);
+		return (sort_three(data, SA), 0);
+	if (pre_sort(data) == 1)
+		return (1);
 	real_sort(data);
+	return (0);
 }

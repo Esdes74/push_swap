@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:04 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/28 12:40:45 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:56:43 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int ac, char **av)
 	while (i < ac)
 		if (parsing(data, av[i++]) != 0)
 			return (ft_printf_fd(ER, MSG), destroy_data(data), 1);
-	sort(data);
+	if (sort(data) == 1)
+		return (ft_printf_fd(ER, "aaaaaaaaaaaaaa\n"), destroy_data(data), 1);
 	return (destroy_data(data), 0);
 }

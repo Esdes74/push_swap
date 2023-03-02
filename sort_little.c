@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:44:35 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/01 15:52:04 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:10:08 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,30 @@ t_cell	*search_max(t_swap *data, int *res, int mod)
 		tmp = tmp->next;
 	}
 	return (pt);
+}
+
+int	*tab_min(t_swap *data, int *t, int size)
+{
+	int		i;
+	t_cell	*tmp;
+
+	t = (int *) malloc(sizeof(int) * size);
+	if (t == 0)
+		return (0);
+	i = 0;
+	while (i < size)
+	{
+		tmp = data->pa->head;
+		t[i] = value(tmp, INT);
+		while (tmp != 0)
+		{
+			if (t[i] < value(tmp, INT) && in(t, value(tmp, INT), i) == 0)
+				t[i] = value(tmp, INT);
+			tmp = tmp->next;
+		}
+		i++;
+	}
+	return (t);
 }
 
 void	sort_three(t_swap *data, int mod)

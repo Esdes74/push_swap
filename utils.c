@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
+/*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 19:07:34 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/02 16:11:07 by eslamber         ###   ########.fr       */
+/*   Created: 2023/03/02 17:46:38 by eslamber          #+#    #+#             */
+/*   Updated: 2023/03/02 19:54:35 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib_mem.h"
+#include "swap.h"
 
-int	ft_memcmp(const void *s, const void *c, size_t n)
+int	in(int *tab, int value, size_t size)
 {
-	size_t	len;
+	size_t	i;
 
-	len = 0;
-	while (len < n)
-	{
-		if (((unsigned char *)s)[len] != ((unsigned char *)c)[len])
-			return (((unsigned char *)s)[len] - ((unsigned char *)c)[len]);
-		len++;
-	}
+	i = 0;
+	while (i < size)
+		if (tab[i++] == value)
+			return (1);
 	return (0);
 }
