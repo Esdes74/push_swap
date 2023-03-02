@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:41:02 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/02 20:23:52 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:29:28 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	pre_sort(t_swap *data)
 
 	while (data->pa->len > 0)
 	{
-		tmp = data->pa->head;//search_min(data, &f_min, &s, SA);
+		tmp = data->pa->head;
 		if (data->pa->len > 300)
 			s = 40;
 		else if (data->pa->len > 100)
@@ -68,7 +68,7 @@ static int	pre_sort(t_swap *data)
 		data->tab = tab_min(data, data->tab, s);
 		if (data->tab == 0)
 			return (1);
-		if (in(data->tab, value(tmp, INT), s) == 1)//value(tmp, INT) <= f_min + s && value(tmp, INT) >= f_min - s)
+		if (in(data->tab, value(tmp, INT), s) == 1)
 			push(data, SB);
 		else
 			reverse_or_rotate(data, SA, value(tmp, INT));
