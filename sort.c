@@ -6,13 +6,13 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:41:02 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/02 20:29:28 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/03 15:19:35 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
 
-static void	reverse_or_rotate(t_swap *data, int mod, int m)
+void	reverse_or_rotate(t_swap *data, int mod, int m)
 {
 	int		r;
 	int		rr;
@@ -20,6 +20,10 @@ static void	reverse_or_rotate(t_swap *data, int mod, int m)
 
 	rr = 0;
 	r = 0;
+	if (mod == SA)
+		tmp = data->pa->head;
+	else if (mod == SB)
+		tmp = data->pb->head;
 	while ((r++) < -1 || value(tmp, INT) != m)
 		tmp = tmp->next;
 	if (mod == SA)
@@ -34,35 +38,16 @@ static void	reverse_or_rotate(t_swap *data, int mod, int m)
 		reverse(data, mod);
 }
 
-static void	real_sort(t_swap *data)
-{
-	int		f;
-	t_cell	*tmp;
-
-	while (data->pb->len > 0)
-	{
-		tmp = search_max(data, &f, SB);
-		if (value(tmp, INT) == f)
-			push(data, SA);
-		else
-			reverse_or_rotate(data, SB, f);
-	}
-}
-
 static int	pre_sort(t_swap *data)
 {
 	int		s;
 	t_cell	*tmp;
 
-	while (data->pa->len > 0)
+	while (data->pa->len > 3)
 	{
 		tmp = data->pa->head;
-		if (data->pa->len > 300)
-			s = 40;
-		else if (data->pa->len > 100)
-			s = 30;
-		else if (data->pa->len > 75)
-			s = 20;
+		if (data->pa->len > 10)
+			s = data->pa->len / 5;
 		else
 			s = 10;
 		data->tab = tab_min(data, data->tab, s);
@@ -74,6 +59,7 @@ static int	pre_sort(t_swap *data)
 			reverse_or_rotate(data, SA, value(tmp, INT));
 		free(data->tab);
 	}
+	sort_three(data, SA);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:15 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/02 20:05:08 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/03 15:16:33 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ typedef struct s_swap{
 	t_list	*pa;
 	t_list	*pb;
 	int		*tab;
+	int		targ;
+	int		comp;
+	int		r;
 }	t_swap;
 
 // Main of parsing part
@@ -47,6 +50,12 @@ void	sort_two(t_swap *data, int mod);
 
 // Sort three first values of lst given
 void	sort_three(t_swap *data, int mod);
+
+// Main of second part of sort algorithm
+void	real_sort(t_swap *data);
+
+// Search best move between rotate or reverse to go to m
+void	reverse_or_rotate(t_swap *data, int mod, int m);
 
 // Search the 2 minimal values of list given
 t_cell	*search_min(t_swap *data, int *f_min, int *s_min, int mod);
