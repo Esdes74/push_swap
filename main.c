@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:04 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/06 13:57:51 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/06 19:08:45 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static int	init_swap(t_swap *data)
 {
 	data->pa = (t_list *) malloc(sizeof(t_list));
-	data->pa = init_list(data->pa);
 	if (data->pa == 0)
-		return (free(data), 1);
+		return (1);
+	data->pa = init_list(data->pa);
 	data->pb = (t_list *) malloc(sizeof(t_list));
-	data->pb = init_list(data->pb);
 	if (data->pb == 0)
-		return (annihilation(data->pa, NULL, DEBUG), free(data), 1);
+		return (annihilation(data->pa, NULL, DEBUG), 1);
+	data->pb = init_list(data->pb);
 	data->tab = 0;
 	data->targ = 0;
 	return (0);

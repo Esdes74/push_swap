@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:44:35 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/02 20:10:08 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/06 19:25:16 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	sort_two(t_swap *data, int mod)
 		pt = data->pb->head;
 	else
 		return ;
-	if (*((int *) pt->data_cell->data) > *((int *) pt->next->data_cell->data))
+	if (value(pt, INT) > value(pt->next, INT))
 		swap(data, mod);
 }
 
