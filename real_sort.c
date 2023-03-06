@@ -6,16 +6,14 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 08:52:45 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/03 16:04:16 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:03:58 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "swap.h"
 
-static void	search_better_r(t_swap *data)
+static void	search_better_r(t_swap *data, int cb, int ca)
 {
-	int		cb;
-	int		ca;
 	t_cell	*tmpa;
 	t_cell	*tmpb;
 
@@ -27,21 +25,13 @@ static void	search_better_r(t_swap *data)
 		ca = 1;
 		while (tmpa != data->pa->tail)
 		{
-					/* ft_printf("ca + cb = %d, %d, %d, %d\n", ca + cb, data->comp, value(tmpb, INT), value(tmpa, INT)); */
-			if (value(tmpb, INT) > value(tmpa, INT) && ca + cb < data->comp)
+			if (value(tmpb, INT) > value(tmpa, INT) && max(ca, cb) < \
+					data->comp && (value(tmpa, INT) > value(tmpa->next, INT) \
+					|| value(tmpb, INT) < value(tmpa->next, INT)))
 			{
-				/* ft_printf("AAAAAAAAAAAAAAAAAAAAA\n"); */
-				/* ft_printf("tmpb = %d, tmpa->next = %d\n", value(tmpb, INT), value(tmpa->next, INT)); */
-				if (value(tmpa, INT) > value(tmpa->next, INT) ||\
-						value(tmpb, INT) < value(tmpa->next, INT))
-				{
-				/* ft_printf("BBBBBBBBBBBBBBBBBBBBB\n"); */
-					data->r = -1;
-					data->comp = ca + cb;
-					data->targ = value(tmpb, INT);
-				}
-				/* else */
-				/* 	return (1); */
+				data->r = value(tmpa->next, INT);
+				data->comp = max(ca, cb);
+				data->targ = value(tmpb, INT);
 			}
 			ca++;
 			tmpa = tmpa->next;
@@ -49,99 +39,99 @@ static void	search_better_r(t_swap *data)
 		cb++;
 		tmpb = tmpb->next;
 	}
-	/* return (0); */
 }
 
-/* static void	search_better_rr(t_swap *data) */
-/* { */
-/* 	int		cb; */
-/* 	int		ca; */
-/* 	t_cell	*tmpa; */
-/* 	t_cell	*tmpb; */
+static void	search_better_r_tail(t_swap *data, int cb, int ca)
+{
+	t_cell	*tmpa;
+	t_cell	*tmpb;
 
-/* 	tmpb = data->pb->tail; */
-/* 	cb = 0; */
-/* 	while (tmpb != 0) */
-/* 	{ */
-/* 		tmpa = data->pa->tail; */
-/* 		ca = 1; */
-/* 		while (tmpa != data->pa->head) */
-/* 		{ */
-/* 			if (value(tmpb, INT) < value(tmpa, INT) && ca + cb < data->comp) */
-/* 				if (value(tmpa, INT) > value(tmpa->prev, INT) \ */
-/* 						|| value(tmpb, INT) > value(tmpa->prev, INT)) */
-/* 				{ */
-/* 					/1* ft_printf("bbbbbbbbbbbbbbbbb\n"); *1/ */
-/* 					data->r = 1; */
-/* 					data->comp = ca + cb; */
-/* 					data->targ = value(tmpb, INT); */
-/* 				} */
-/* 			ca++; */
-/* 			tmpa = tmpa->prev; */
-/* 		} */
-/* 		cb++; */
-/* 		tmpb = tmpb->prev; */
-/* 	} */
-/* 		/1* ft_printf("comp = %d, r = %d\n", data->comp, data->r); *1/ */
-/* } */
+	tmpb = data->pb->tail;
+	cb = 0;
+	while (tmpb != 0)
+	{
+		tmpa = data->pa->head;
+		ca = 1;
+		while (tmpa != data->pa->tail)
+		{
+			if (value(tmpb, INT) > value(tmpa, INT) && ca + cb < \
+					data->comp && (value(tmpa, INT) > value(tmpa->next, INT) \
+					|| value(tmpb, INT) < value(tmpa->next, INT)))
+			{
+				data->r = value(tmpa->next, INT);
+				data->comp = ca + cb;
+				data->targ = value(tmpb, INT);
+			}
+			ca++;
+			tmpa = tmpa->next;
+		}
+		cb++;
+		tmpb = tmpb->prev;
+	}
+}
 
-/* static void	simple(t_swap *data) */
-/* { */
-/* 	int	i; */
-
-/* 	i = 0; */
-/* 	while (i == 0) */
-/* 	{ */
-/* 		if (value(data->pb->head, INT) < value(data->pa->head, INT)) */
-/* 			push(data, SA); */
-/* 		else if (value(data->pb->head, INT) > value(data->pa->tail, INT)) */
-/* 		{ */
-/* 			push(data, SA); */
-/* 		} */
-/* 		else */
-/* 			i++; */
-/* 	} */
-/* } */
+static void	following_r_or_rr(t_swap *data, int m)
+{
+	while (data->pb->len > 0 && value(data->pa->head, INT) != data->r)
+	{
+		if (value(data->pa->head, INT) < value(data->pa->tail, INT) && m < \
+				data->targ)
+			break ;
+		if (value(data->pa->head, INT) < data->targ && \
+				value(data->pa->head->next, INT) > data->targ)
+		{
+			rotate(data, SA);
+			break ;
+		}
+		reverse_or_rotate(data, SA, data->r);
+	}
+}
 
 static void	r_or_rr(t_swap *data)
 {
-	int	m;
+	int		m;
+	int		n;
+	int		len;
+	t_cell	*tmp;
 
-	/* ft_printf("%d\n", data->targ); */
-	/* print_list(data->pa); */
-	/* print_list(data->pb); */
-	while (value(data->pb->head, INT) != data->targ)
+	while (data->pb->len > 0 && value(data->pb->head, INT) != data->targ && \
+			value(data->pa->head, INT) != data->r)
 	{
-		if (data->targ < value(data->pa->head, INT) \
-				&& data->targ > value(data->pa->tail, INT))
-			break;
-		if (data->r < 0)
+		m = 0;
+		n = 0;
+		tmp = data->pa->head;
+		while (value(tmp, INT) != data->r)
+		{
+			n++;
+			tmp = tmp->next;
+		}
+		tmp = data->pb->head;
+		while (value(tmp, INT) != data->targ)
+		{
+			m++;
+			tmp = tmp->next;
+		}
+		len = min(data->pa->len, data->pb->len);
+		if (n > len && m > len)
+			reverse(data, DB);
+		else if (n < len && m < len)
 			rotate(data, DB);
 		else
-			reverse(data, DB);
+			break ;
 	}
-	while (value(data->pb->head, INT) != data->targ)
-		if (data->r < 0)
-			rotate(data, SB);
-		else
-			reverse(data, SB);
-	/* ft_printf("targ = %d, head = %d\n", data->targ, value(data->pa->head, INT)); */
+	while (data->pb->len > 0 && value(data->pb->head, INT) != data->targ)
+		reverse_or_rotate(data, SB, data->targ);
 	search_max(data, &m, SA);
-	while (1 == 1)//value(data->pa->head, INT) < data->targ)
-	{
-		if (value(data->pa->head, INT) < value(data->pa->tail, INT) && m < data->targ)
-			break;
-		if (value(data->pa->head, INT) < data->targ && value(data->pa->head->next, INT) > data->targ)
-		{
-			rotate(data, SA);
-			break;
-		}
-		else if (data->r < 0)
-			rotate(data, SA);
-		else
-			reverse(data, SA);
-	}
+	following_r_or_rr(data, m);
 	push(data, SA);
+}
+
+static void	push_head(t_swap *data)
+{
+	while (data->pb->len > 0 && value(data->pb->head, INT) < \
+		value(data->pa->head, INT) && value(data->pb->head, INT) > \
+		value(data->pa->tail, INT))
+		push(data, SA);
 }
 
 void	real_sort(t_swap *data)
@@ -149,23 +139,15 @@ void	real_sort(t_swap *data)
 	int	f;
 	int	s;
 
-	/* int i = 0; */
 	while (data->pb->len > 0)
-	/* { */
-	/* while (i < 20) */
 	{
-		/* simple(data); */
-		data->comp = data->pb->len;
+		push_head(data);
+		data->comp = max(data->pb->len, data->pa->len);
 		data->r = 0;
-		data->targ = value(data->pb->head, INT);
-		search_better_r(data);
-		/* if (search_better_r(data) == 1) */
-		/* { */
-		/* 	reverse(data, SA); */
-		/* 	push(data, SA); */
-		/* } */
-		/* ft_printf("comp = %d, r = %d\n", data->comp, data->r); */
-		/* search_better_rr(data); */
+		if (data->pb->len > 0)
+			data->targ = value(data->pb->head, INT);
+		search_better_r(data, f, s);
+		search_better_r_tail(data, f, s);
 		search_min(data, &f, &s, SA);
 		if (data->r == 0 && f > data->targ)
 		{
@@ -175,9 +157,8 @@ void	real_sort(t_swap *data)
 		}
 		else
 			r_or_rr(data);
-		/* } */
-		/* i++; */
 	}
+	search_min(data, &f, &s, SA);
 	while (value(data->pa->head, INT) != f)
 		reverse_or_rotate(data, SA, f);
 }

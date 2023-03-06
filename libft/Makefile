@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:42:31 by eslamber          #+#    #+#              #
-#    Updated: 2023/02/28 16:17:29 by eslamber         ###   ########.fr        #
+#    Updated: 2023/03/05 10:11:57 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -152,7 +152,8 @@ TREE_LIB_H := $(LIB_TREE)lib_tree.h
 TREE_OBJ_LIB := $(TREE_LIB:%.c=$(LIB_TREE_OBJ)%.o)
 
 MATH_LIB := ft_power.c \
-			ft_max.c
+			ft_max.c \
+			ft_min.c
 MATH_LIB_H := $(LIB_MATH)lib_math.h
 MATH_OBJ_LIB := $(MATH_LIB:%.c=$(LIB_MATH_OBJ)%.o)
 

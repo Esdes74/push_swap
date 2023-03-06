@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   ft_min.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
+/*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 19:50:47 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/05 10:10:46 by eslamber         ###   ########.fr       */
+/*   Created: 2023/03/05 10:08:33 by eslamber          #+#    #+#             */
+/*   Updated: 2023/03/05 10:09:18 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib_math.h"
-
-int	max(int x, int y)
+int	min(int x, int y)
 {
-	if (x > y)
+	if (x < y)
 		return (x);
 	return (y);
 }
