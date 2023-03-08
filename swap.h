@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:15 by eslamber          #+#    #+#             */
-/*   Updated: 2023/02/27 18:48:49 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/05 10:12:24 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 typedef struct s_swap{
 	t_list	*pa;
 	t_list	*pb;
+	int		*tab;
+	int		targ;
+	int		comp;
+	int		r;
 }	t_swap;
 
 // Main of parsing part
@@ -37,5 +41,32 @@ void	rotate(t_swap *data, int mod);
 
 // Execute rule reverse
 void	reverse(t_swap *data, int mod);
+
+// Main of sort part
+int		sort(t_swap *data);
+
+// Sort two first values of lst given (by mod)
+void	sort_two(t_swap *data, int mod);
+
+// Sort three first values of lst given
+void	sort_three(t_swap *data, int mod);
+
+// Main of second part of sort algorithm
+void	real_sort(t_swap *data);
+
+// Search best move between rotate or reverse to go to m
+void	reverse_or_rotate(t_swap *data, int mod, int m);
+
+// Search the 2 minimal values of list given
+t_cell	*search_min(t_swap *data, int *f_min, int *s_min, int mod);
+
+// Searche the maximal value if list given
+t_cell	*search_max(t_swap *data, int *res, int mod);
+
+// Build a list of size highest integer, return 1 if not ok
+int		*tab_min(t_swap *data, int *t, int size);
+
+// Return 1 if value is in tab, 0 if not
+int		in(int *tab, int value, size_t size);
 
 #endif

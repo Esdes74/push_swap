@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:05:01 by eslamber          #+#    #+#             */
-/*   Updated: 2022/11/18 12:12:24 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/05 10:11:35 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,8 @@
 void	ft_power(void);
 
 // Return the higher between x and y
-size_t	max(size_t x, size_t y);
+int		max(int x, int y);
+
+// Return the smaller between x and y
+int		min(int x, int y);
 #endif

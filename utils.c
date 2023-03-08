@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
+/*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 19:50:47 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/05 10:10:46 by eslamber         ###   ########.fr       */
+/*   Created: 2023/03/02 17:46:38 by eslamber          #+#    #+#             */
+/*   Updated: 2023/03/03 16:20:12 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib_math.h"
+#include "swap.h"
 
-int	max(int x, int y)
+int	in(int *tab, int value, size_t size)
 {
-	if (x > y)
-		return (x);
-	return (y);
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+		if (tab[i++] == value)
+			return (1);
+	return (0);
 }

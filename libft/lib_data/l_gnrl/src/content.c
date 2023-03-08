@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   content.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
+/*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/17 19:50:47 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/05 10:10:46 by eslamber         ###   ########.fr       */
+/*   Created: 2023/02/28 16:19:14 by eslamber          #+#    #+#             */
+/*   Updated: 2023/02/28 16:20:13 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib_math.h"
+#include "../../lib_data.h"
 
-int	max(int x, int y)
+void	*content(t_cell *cell)
 {
-	if (x > y)
-		return (x);
-	return (y);
+	return (cell->data_cell->data);
 }

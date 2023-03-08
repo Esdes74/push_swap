@@ -2,3 +2,5 @@
 push_swap
 *.o
 libft/libft.a
+imgui.ini
+vgcore*
