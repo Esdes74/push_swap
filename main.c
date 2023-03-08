@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
+/*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:04 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/06 19:08:45 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:56:55 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	main(int ac, char **av)
 	t_swap	data;
 	int		i;
 
-	if (ac == 1)
-		return (ft_printf_fd(ER, MSG), 1);
 	if (init_swap(&data) == 1)
 		return (ft_printf_fd(ER, MSG), 1);
 	i = 1;

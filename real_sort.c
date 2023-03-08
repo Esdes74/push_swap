@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 08:52:45 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/06 14:03:58 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:53:40 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,62 +68,6 @@ static void	search_better_r_tail(t_swap *data, int cb, int ca)
 		cb++;
 		tmpb = tmpb->prev;
 	}
-}
-
-static void	following_r_or_rr(t_swap *data, int m)
-{
-	while (data->pb->len > 0 && value(data->pa->head, INT) != data->r)
-	{
-		if (value(data->pa->head, INT) < value(data->pa->tail, INT) && m < \
-				data->targ)
-			break ;
-		if (value(data->pa->head, INT) < data->targ && \
-				value(data->pa->head->next, INT) > data->targ)
-		{
-			rotate(data, SA);
-			break ;
-		}
-		reverse_or_rotate(data, SA, data->r);
-	}
-}
-
-static void	r_or_rr(t_swap *data)
-{
-	int		m;
-	int		n;
-	int		len;
-	t_cell	*tmp;
-
-	while (data->pb->len > 0 && value(data->pb->head, INT) != data->targ && \
-			value(data->pa->head, INT) != data->r)
-	{
-		m = 0;
-		n = 0;
-		tmp = data->pa->head;
-		while (value(tmp, INT) != data->r)
-		{
-			n++;
-			tmp = tmp->next;
-		}
-		tmp = data->pb->head;
-		while (value(tmp, INT) != data->targ)
-		{
-			m++;
-			tmp = tmp->next;
-		}
-		len = min(data->pa->len, data->pb->len);
-		if (n > len && m > len)
-			reverse(data, DB);
-		else if (n < len && m < len)
-			rotate(data, DB);
-		else
-			break ;
-	}
-	while (data->pb->len > 0 && value(data->pb->head, INT) != data->targ)
-		reverse_or_rotate(data, SB, data->targ);
-	search_max(data, &m, SA);
-	following_r_or_rr(data, m);
-	push(data, SA);
 }
 
 static void	push_head(t_swap *data)

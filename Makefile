@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+         #
+#    By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 11:29:29 by eslamber          #+#    #+#              #
-#    Updated: 2023/03/03 09:01:59 by eslamber         ###   ########.fr        #
+#    Updated: 2023/03/08 17:53:57 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC := parsing.c \
 	   sort_little.c \
 	   real_sort.c \
 	   utils.c \
+	   r_or_rr.c \
 	   main.c
 OBJ := $(SRC:%.c=.obj/%.o)
 

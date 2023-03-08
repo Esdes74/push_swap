@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
+/*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:15 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/05 10:12:24 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:54:44 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void	sort_two(t_swap *data, int mod);
 
 // Sort three first values of lst given
 void	sort_three(t_swap *data, int mod);
+
+// Choice between r and rr
+void	r_or_rr(t_swap *data);
 
 // Main of second part of sort algorithm
 void	real_sort(t_swap *data);
