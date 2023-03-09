@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:15 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/09 09:28:37 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:34:23 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,5 @@ void	real_sort(t_swap *data);
 
 // Search best move between rotate or reverse to go to m
 void	reverse_or_rotate(t_swap *data, int mod, int m);
-
-// Return 1 if value is in tab, 0 if not
-int		in(int *tab, int value, size_t size);
 
 #endif

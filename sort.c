@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:41:02 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/09 09:22:38 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:34:05 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ void	reverse_or_rotate(t_swap *data, int mod, int m)
 		rotate(data, mod);
 	else
 		reverse(data, mod);
+}
+
+static int	in(int *tab, int value, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+		if (tab[i++] == value)
+			return (1);
+	return (0);
 }
 
 static int	*tab_min(t_swap *data, int *t, int size)

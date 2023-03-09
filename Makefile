@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 11:29:29 by eslamber          #+#    #+#              #
-#    Updated: 2023/03/09 09:29:46 by eslamber         ###   ########.fr        #
+#    Updated: 2023/03/09 09:34:18 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,6 @@ SRC := parsing.c \
 	   sort.c \
 	   sort_utils.c \
 	   real_sort.c \
-	   utils.c \
 	   r_or_rr.c \
 	   main.c
 OBJ := $(SRC:%.c=.obj/%.o)
