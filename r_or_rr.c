@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:53:17 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/08 17:54:57 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:21:18 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,26 @@ static void	db_r_or_rr(t_swap *data, int *n, int *m)
 		*m = *m + 1;
 		tmp = tmp->next;
 	}
+}
+
+static t_cell	*search_max(t_swap *data, int *res, int mod)
+{
+	t_cell	*tmp;
+	t_cell	*pt;
+
+	if (mod == SA)
+		pt = data->pa->head;
+	else if (mod == SB)
+		pt = data->pb->head;
+	tmp = pt;
+	*res = value(pt, INT);
+	while (tmp != 0)
+	{
+		if (value(tmp, INT) > *res)
+			*res = value(tmp, INT);
+		tmp = tmp->next;
+	}
+	return (pt);
 }
 
 void	r_or_rr(t_swap *data)

@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:15 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/08 17:54:44 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:28:37 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void	reverse(t_swap *data, int mod);
 // Main of sort part
 int		sort(t_swap *data);
 
+// Search first and second minimum in list
+t_cell	*search_min(t_swap *data, int *f_min, int *s_min, int mod);
+
 // Sort two first values of lst given (by mod)
 void	sort_two(t_swap *data, int mod);
 
@@ -59,15 +62,6 @@ void	real_sort(t_swap *data);
 
 // Search best move between rotate or reverse to go to m
 void	reverse_or_rotate(t_swap *data, int mod, int m);
-
-// Search the 2 minimal values of list given
-t_cell	*search_min(t_swap *data, int *f_min, int *s_min, int mod);
-
-// Searche the maximal value if list given
-t_cell	*search_max(t_swap *data, int *res, int mod);
-
-// Build a list of size highest integer, return 1 if not ok
-int		*tab_min(t_swap *data, int *t, int size);
 
 // Return 1 if value is in tab, 0 if not
 int		in(int *tab, int value, size_t size);

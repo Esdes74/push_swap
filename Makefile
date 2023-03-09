@@ -6,7 +6,7 @@
 #    By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/15 11:29:29 by eslamber          #+#    #+#              #
-#    Updated: 2023/03/08 17:53:57 by eslamber         ###   ########.fr        #
+#    Updated: 2023/03/09 09:29:46 by eslamber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC := parsing.c \
 	   rules_swap_and_push.c \
 	   rule_rotate_and_reverse.c \
 	   sort.c \
-	   sort_little.c \
+	   sort_utils.c \
 	   real_sort.c \
 	   utils.c \
 	   r_or_rr.c \

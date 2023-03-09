@@ -6,7 +6,7 @@
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:41:02 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/06 14:02:06 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:22:38 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,30 @@ void	reverse_or_rotate(t_swap *data, int mod, int m)
 		rotate(data, mod);
 	else
 		reverse(data, mod);
+}
+
+static int	*tab_min(t_swap *data, int *t, int size)
+{
+	int		i;
+	t_cell	*tmp;
+
+	t = (int *) malloc(sizeof(int) * size);
+	if (t == 0)
+		return (0);
+	i = 0;
+	while (i < size)
+	{
+		tmp = data->pa->head;
+		t[i] = value(tmp, INT);
+		while (tmp != 0)
+		{
+			if (t[i] < value(tmp, INT) && in(t, value(tmp, INT), i) == 0)
+				t[i] = value(tmp, INT);
+			tmp = tmp->next;
+		}
+		i++;
+	}
+	return (t);
 }
 
 static int	pre_sort(t_swap *data)
