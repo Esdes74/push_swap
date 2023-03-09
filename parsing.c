@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eslamber <eslamber@student.42.ft>          +#+  +:+       +#+        */
+/*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:36:10 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/06 19:14:31 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/09 08:32:36 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	annalyse(char *elem)
 	if (len == ft_strlen(int_max) && ft_strncmp(int_max, elem, len) < 0)
 		return (1);
 	i = 0;
-	if (elem[0] == '-')
+	if (elem[0] == '-' || elem[0] == '+')
 		i++;
 	while (ft_isdigit(elem[i]))
 		i++;
