@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_two_three.c                                   :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:44:35 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/09 09:28:53 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:38:41 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,30 @@ t_cell	*search_min(t_swap *data, int *f_min, int *s_min, int mod)
 		tmp = tmp->next;
 	}
 	return (pt);
+}
+
+void	reverse_or_rotate(t_swap *data, int mod, int m)
+{
+	int		r;
+	int		rr;
+	t_cell	*tmp;
+
+	rr = 0;
+	r = 0;
+	if (mod == SA)
+		tmp = data->pa->head;
+	else if (mod == SB)
+		tmp = data->pb->head;
+	while ((r++) < -1 || value(tmp, INT) != m)
+		tmp = tmp->next;
+	if (mod == SA)
+		tmp = data->pa->tail;
+	else
+		tmp = data->pb->tail;
+	while ((rr++) < -1 || value(tmp, INT) != m)
+		tmp = tmp->prev;
+	if (r <= rr)
+		rotate(data, mod);
+	else
+		reverse(data, mod);
 }
