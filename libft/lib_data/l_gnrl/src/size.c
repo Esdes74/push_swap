@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   size.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eslamber <eslamber@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: eslamber <eslamber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 14:31:44 by eslamber          #+#    #+#             */
-/*   Updated: 2023/03/02 16:17:58 by eslamber         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:49:29 by eslamber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../lib_data.h"
 
 void	following_debugger_size(t_type t)
-{		
+{
 	if (t == LONG_LONG_UNSIGNED)
 		write(1, "LONG_LONG_UNSIGNED\n", 19);
 	if (t == LIST)
